@@ -50,9 +50,9 @@ class InvoiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Invoice $invoice)
     {
-        //
+        return new InvoiceResource($invoice);
     }
 
     /**
@@ -60,14 +60,46 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required',
+            'type' => 'required|max:1|in:' . implode(',', ['B', 'C', 'P']),
+            'paid' => 'required|numeric|between:0,1',
+            'value' => 'required|numeric|',
+            'payment_date' => 'nullable|date_format:Y-m-d H:i:s'
+        ]);
+
+        if ($validator->fails()) {
+            return $this->error('Validation failed', 422, $validator->errors());
+        }
+
+        $fieldsUpdate = $validator->validated();
+
+        $objectUpdate = Invoice::find($id)->update([
+            'user_id' => $fieldsUpdate['user_id'],
+            'type' => $fieldsUpdate['type'],
+            'paid' => $fieldsUpdate['paid'],
+            'value' => $fieldsUpdate['value'],
+            'payment_date' => $fieldsUpdate['paid'] ? $fieldsUpdate['payment_date'] : null
+        ]);
+
+        if ($objectUpdate) {
+            return $this->success('Invoice updated!', 200, $request->all());
+        }
+
+        return $this->error('Invoice not updated', 400);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Invoice $invoice)
     {
-        //
+        $deletedObject = $invoice->delete();
+
+        if ($deletedObject) {
+            return $this->success('Invoice deleted', 200);
+        }
+
+        return $this->error('Invoice not deleted', 400);
     }
 }
