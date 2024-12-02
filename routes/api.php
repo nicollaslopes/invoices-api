@@ -31,5 +31,6 @@ Route::prefix('v1')->group(function (){
         Route::post('/invoices', [InvoiceController::class, 'store']);
         Route::put('/invoices/{invoice}', [InvoiceController::class, 'update']);
         Route::delete('/invoices/{invoice}', [InvoiceController::class, 'destroy']);
+        Route::post('/logout', [AuthController::class, 'logout']);
     });
 });
