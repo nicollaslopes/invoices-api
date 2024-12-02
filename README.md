@@ -31,3 +31,4 @@ After you have run the seed command to populate the database, you will only chan
 }
 ```
 
+![image](https://github.com/user-attachments/assets/def3c860-0ff2-4bec-96ff-e535479f594d)
