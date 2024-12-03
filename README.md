@@ -66,11 +66,16 @@ Once you have the token, you can use it to authenticate and get the route respon
 	"type": "P",
 	"paid": 1,
 	"value": 7000.00,
-    "payment_date": "2024-01-01 00:00:00"
+	"payment_date": "2024-01-01 00:00:00"
 }
 ```
 
 ![image](https://github.com/user-attachments/assets/44873596-f54e-4644-8f13-be2803a85a17)
 
 
+### ```DELETE```
+```
+    http://localhost:8000/api/v1/invoices/{id}
+```
 
+![image](https://github.com/user-attachments/assets/bc7ae8ed-baa4-471e-90b6-edfcbc0e5c79)
