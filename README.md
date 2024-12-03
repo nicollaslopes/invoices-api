@@ -39,3 +39,38 @@ Once you have the token, you can use it to authenticate and get the route respon
 ```
     http://localhost:8000/api/v1/invoices
 ```
+
+![image](https://github.com/user-attachments/assets/9982f6b1-ec15-40cf-a825-0af1ff8eaecd)
+
+### ```POST```
+```
+    http://localhost:8000/api/v1/invoices
+```
+```JSON
+{
+	"user_id": "4",
+	"type": "P",
+	"paid": 1,
+	"value": 5000.00
+}
+```
+![image](https://github.com/user-attachments/assets/86ba988a-1b60-4d54-8059-2344765852dc)
+
+### ```PUT```
+```
+    http://localhost:8000/api/v1/invoices/{id}
+```
+```JSON
+{
+	"user_id": "4",
+	"type": "P",
+	"paid": 1,
+	"value": 7000.00,
+    "payment_date": "2024-01-01 00:00:00"
+}
+```
+
+![image](https://github.com/user-attachments/assets/44873596-f54e-4644-8f13-be2803a85a17)
+
+
+
